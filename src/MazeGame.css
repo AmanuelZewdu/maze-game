@@ -60,26 +60,39 @@ top: 60%;
 
 /* Roll ball button */
 .roll-ball-button {
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-right : 8px;
   border: 1px solid #ccc;
   cursor: pointer;
-  width: 150px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   background-color: #f00;
-  border-radius: 10px;
   color: #fff;
   font-size: 18px;
   background-position: center;
   background-repeat: no-repeat;
   transition: background-color 0.2s ease-in-out;
- 
   position: relative;
- 
   top: 60%;
-  left: 35%;
+  left: 40%;
+  border-radius: 50%;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  animation: pulse 1s ease-in-out infinite;
 }
 
-
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
 
 
