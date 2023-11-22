@@ -27,26 +27,35 @@
   border-radius: 50%;
   margin: 5px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-  margin: 2px;
-text-align:center;
-line-height: 100px;
+  margin: 8px;
+  text-align:center;
+  line-height: 100px;
 
 }
-.maze-cell.large{
-  
+
+.buttons{
+  position: absolute;
+top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   
 }
-
 /* Active maze cell (ball's current position) */
 .maze-cell.active {
   width: 120px;
   height: 120px;
-  background-color: #f00;
-  color: #fff;
+  background-color:green;
+  color:white;
 }
-.maze-cell.inactive {
-  background-color: black;
-  color: #fff;
+.maze-cell.special-cell {
+  width: 120px;
+  height: 120px;
+  background-color:#f00;
+  color:white;
+}
+
+.special-cell.active:not(#fff) {
+  background-color: #f00; /* Change color of 15th cell when ball reaches it */
 }
 
 /* Roll ball button */
@@ -63,23 +72,14 @@ line-height: 100px;
   background-position: center;
   background-repeat: no-repeat;
   transition: background-color 0.2s ease-in-out;
-  align-items: center;
+ 
   position: relative;
-  align-items: center;
+ 
+  top: 60%;
+  left: 35%;
 }
 
-/* Fireworks animation (replace with actual animation implementation) */
-.fireworks-animation {
-  position: absolute;
-  top: 100px;
-  left: 100px;
-  width: 200px;
-  height: 200px;
-  background-color: #fff;
-  border-radius: 50%;
-  opacity: 0;
-  animation: fireworks 2s ease-in-out forwards;
-}
+
 
 
 
@@ -87,66 +87,11 @@ line-height: 100px;
 .success-message {
   margin-top: 10px;
   text-align: center;
-  font-size: 18px;
+  font-size: 40px;
   color: #080;
 }
 
-@keyframes fireworks {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0);
-  }
-}
 
-/* Style the fireworks container */
-.fireworks-animation {
-  position: absolute;
-  top: 100px;
-  left: 100px;
-  width: 200px;
-  height: 200px;
-  background-color: transparent;
-  
-}
-
-/* Style each firework element */
-.firework-1 {
-  width: 20px;
-  height: 20px;
-  background-color: #f00;
-  border-radius: 50%;
-  opacity: 0;
-  animation: fireworks 1s ease-in-out forwards;
-  animation-delay: 0.2s;
-}
-
-.firework-2 {
-  width: 15px;
-  height: 15px;
-  background-color: #00f;
-  border-radius: 50%;
-  opacity: 0;
-  animation: fireworks 1s ease-in-out forwards;
-  animation-delay: 0.4s;
-}
-
-.firework-3 {
-  width: 25px;
-  height: 25px;
-  background-color: #0f0;
-  border-radius: 50%;
-  opacity: 0;
-  animation: fireworks 1s ease-in-out forwards;
-  animation-delay: 0.6s;
-}
 
 
 .roll-ball-button:hover {
@@ -172,3 +117,100 @@ line-height: 100px;
   line-height: 1.5;
 }
 
+
+
+.fireworks-animation {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fireworks 2s ease-in-out forwards;
+  
+}
+
+@keyframes fireworks {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.firework {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background-color: #f00;
+  border-radius: 50%;
+  animation: burst 1s ease-in-out forwards;
+}
+
+@keyframes burst {
+  from {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(2);
+  }
+  to {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.firework-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background-color: #00f;
+  border-radius: 50%;
+  animation: sparkle 1s linear infinite;
+}
+
+@keyframes sparkle {
+  0% {
+    transform: translateX(-5px) translateY(-5px) rotate(0deg);
+  }
+  25% {
+    transform: translateX(5px) translateY(5px) rotate(45deg);
+  }
+  50% {
+    transform: translateX(10px) translateY(10px) rotate(90deg);
+  }
+  75% {
+    transform: translateX(5px) translateY(5px) rotate(135deg);
+  }
+  100% {
+    transform: translateX(-5px) translateY(-5px) rotate(180deg);
+  }
+}
+
+/* Style the feedback container */
+.feedback-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  text-align: center;
+  line-height: 200px;
+  display: none;
+  z-index: 2;
+}
+
+
+
+/* Style the fireworks animation */
+.fireworks-animation {
+  font-size: 48px;
+}

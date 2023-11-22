@@ -18,9 +18,9 @@ const MazeGame = () => {
 
     // Update ball position randomly between 1 and 2 steps
     const newBallPosition = Math.min(ballPosition + Math.random() * 2 + 1, 15);
-    // console.log("Ball Position", newBallPosition);
-    const result = Math.floor(newBallPosition);
-    setBallPosition(result);
+
+    setBallPosition(Math.floor(newBallPosition));
+    console.log("Ball Position", ballPosition);
 
     // Check if ball reached cell 15
     if (newBallPosition === 15) {
@@ -42,6 +42,7 @@ const MazeGame = () => {
       <header class="maze-game-header">
         <h1>Maze Game</h1>
         <p>Challenge your skills and guide the ball to the goal!</p>
+        <p>Hit the ball or the button to roll</p>
       </header>
       <div className="maze-game">
         {/* Maze board with numbered cells */}
@@ -52,6 +53,7 @@ const MazeGame = () => {
               className={`maze-cell ${
                 ballPosition === index + 1 ? "active" : ""
               }`}
+              onClick={handleRollBallClick}
             >
               {index + 1}
             </div>
@@ -59,36 +61,46 @@ const MazeGame = () => {
         </div>
 
         {/* Roll ball button */}
-        <button className="roll-ball-button" onClick={handleRollBallClick}>
-          Roll Ball
-        </button>
-        {/* Restart button */}
-        <button className="roll-ball-button" onClick={resetGame}>
-          Restart
-        </button>
+        <div className="">
+          <button className="roll-ball-button" onClick={handleRollBallClick}>
+            Roll Ball
+          </button>
+          {/* Restart button */}
+          <button className="roll-ball-button" onClick={resetGame}>
+            Reset
+          </button>
+        </div>
 
         {/* Fireworks animation (conditionally displayed) */}
         {showFireworks && (
-          <div className="fireworks-animation">
-            <div className="firework-1"></div>
-            <div className="firework-2"></div>
-            <div className="firework-3"></div>
-            <div className="firework-1"></div>
-            <div className="firework-2"></div>
-            <div className="firework-3"></div>
-            <div className="firework-1"></div>
-            <div className="firework-2"></div>
-            <div className="firework-3"></div>
-            <div className="firework-1"></div>
-            <div className="firework-2"></div>
-            <div className="firework-3"></div>
-            <div className="firework-1"></div>
-            <div className="firework-2"></div>
-            <div className="firework-3"></div>
-            <div className="firework-1"></div>
-            <div className="firework-2"></div>
-            <div className="firework-3"></div>
-          </div>
+          <>
+            <div className="fireworks-animation">
+              <div className="firework">
+                <div className="firework-particle"></div>
+                <div className="firework-particle"></div>
+                <div className="firework-particle"></div>
+                <div className="firework-particle"></div>
+                <div className="firework-particle"></div>
+              </div>
+              <div className="firework">
+                <div className="firework-particle"></div>
+                <div className="firework-particle"></div>
+                <div className="firework-particle"></div>
+                <div className="firework-particle"></div>
+                <div className="firework-particle"></div>
+              </div>
+              <div className="firework">
+                <div className="firework-particle"></div>
+                <div className="firework-particle"></div>
+                <div className="firework-particle"></div>
+                <div className="firework-particle"></div>
+                <div className="firework-particle"></div>
+              </div>
+            </div>
+            <div class="firework"></div>
+            <div class="firework"></div>
+            <div class="firework"></div>
+          </>
         )}
 
         {/* Success message (conditionally displayed) */}
