@@ -18,7 +18,9 @@ const MazeGame = () => {
 
     // Update ball position randomly between 1 and 2 steps
     const newBallPosition = Math.min(ballPosition + Math.random() * 2 + 1, 15);
-    setBallPosition(newBallPosition);
+    // console.log("Ball Position", newBallPosition);
+    const result = Math.floor(newBallPosition);
+    setBallPosition(result);
 
     // Check if ball reached cell 15
     if (newBallPosition === 15) {
@@ -68,6 +70,21 @@ const MazeGame = () => {
         {/* Fireworks animation (conditionally displayed) */}
         {showFireworks && (
           <div className="fireworks-animation">
+            <div className="firework-1"></div>
+            <div className="firework-2"></div>
+            <div className="firework-3"></div>
+            <div className="firework-1"></div>
+            <div className="firework-2"></div>
+            <div className="firework-3"></div>
+            <div className="firework-1"></div>
+            <div className="firework-2"></div>
+            <div className="firework-3"></div>
+            <div className="firework-1"></div>
+            <div className="firework-2"></div>
+            <div className="firework-3"></div>
+            <div className="firework-1"></div>
+            <div className="firework-2"></div>
+            <div className="firework-3"></div>
             <div className="firework-1"></div>
             <div className="firework-2"></div>
             <div className="firework-3"></div>

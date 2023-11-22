@@ -27,12 +27,25 @@
   border-radius: 50%;
   margin: 5px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-  animation: bounce 1s ease-in-out infinite;
+  margin: 2px;
+text-align:center;
+line-height: 100px;
+
+}
+.maze-cell.large{
+  
+  
 }
 
 /* Active maze cell (ball's current position) */
 .maze-cell.active {
+  width: 120px;
+  height: 120px;
   background-color: #f00;
+  color: #fff;
+}
+.maze-cell.inactive {
+  background-color: black;
   color: #fff;
 }
 
@@ -101,6 +114,7 @@
   width: 200px;
   height: 200px;
   background-color: transparent;
+  
 }
 
 /* Style each firework element */
@@ -158,42 +172,3 @@
   line-height: 1.5;
 }
 
-/* Style the fireworks container */
-.fireworks-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  overflow: hidden;
-}
-
-/* Style the firework particles */
-.firework-particle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: random(#f00, #00f, #0f0);
-  transform: translate(-50%, -50%);
-  animation: firework-animation 2s ease-in-out forwards;
-}
-
-/* Define the firework animation */
-@keyframes firework-animation {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-  50% {
-    opacity: 0.5;
-    transform: translate(-50%, -50%) scale(2);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(4);
-  }
-}
