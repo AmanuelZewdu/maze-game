@@ -1,0 +1,168 @@
+
+/* Overall game container */
+.maze-game {
+  width: 1000px;
+  margin: 0 auto;
+  font-family: sans-serif;
+}
+
+/* Maze board */
+.maze-board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 600px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+
+  background-color: #f2f2f2;
+  
+ 
+}
+
+/* Maze cells */
+.maze-cell {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  animation: bounce 1s ease-in-out infinite;
+}
+
+/* Active maze cell (ball's current position) */
+.maze-cell.active {
+  background-color: #f00;
+  color: #fff;
+}
+
+/* Roll ball button */
+.roll-ball-button {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  width: 150px;
+  height: 50px;
+  background-color: #f00;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 18px;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-color 0.2s ease-in-out;
+  align-items: center;
+  position: relative;
+  align-items: center;
+}
+
+/* Fireworks animation (replace with actual animation implementation) */
+.fireworks-animation {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 200px;
+  height: 200px;
+  background-color: #fff;
+  border-radius: 50%;
+  opacity: 0;
+  animation: fireworks 2s ease-in-out forwards;
+}
+
+@keyframes fireworks {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Success message */
+.success-message {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 18px;
+  color: #080;
+}
+
+@keyframes fireworks {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+/* Style the fireworks container */
+.fireworks-animation {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 200px;
+  height: 200px;
+  background-color: transparent;
+}
+
+/* Style each firework element */
+.firework-1 {
+  width: 20px;
+  height: 20px;
+  background-color: #f00;
+  border-radius: 50%;
+  opacity: 0;
+  animation: fireworks 1s ease-in-out forwards;
+  animation-delay: 0.2s;
+}
+
+.firework-2 {
+  width: 15px;
+  height: 15px;
+  background-color: #00f;
+  border-radius: 50%;
+  opacity: 0;
+  animation: fireworks 1s ease-in-out forwards;
+  animation-delay: 0.4s;
+}
+
+.firework-3 {
+  width: 25px;
+  height: 25px;
+  background-color: #0f0;
+  border-radius: 50%;
+  opacity: 0;
+  animation: fireworks 1s ease-in-out forwards;
+  animation-delay: 0.6s;
+}
+
+.roll-ball-button:hover {
+  background-color: #d00;
+}
+
+.maze-game-header {
+  text-align: center;
+  padding: 20px;
+  background-color: #f2f2f2;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  
+}
+
+.maze-game-header h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.maze-game-header p {
+  font-size: 16px;
+  line-height: 1.5;
+}
