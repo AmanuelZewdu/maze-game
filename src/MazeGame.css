@@ -46,6 +46,7 @@ top: 60%;
   height: 120px;
   background-color:green;
   color:white;
+  animation: pulse 1s ease-in-out infinite;
 }
 .maze-cell.special-cell {
   width: 120px;
@@ -227,3 +228,24 @@ top: 60%;
 .fireworks-animation {
   font-size: 48px;
 }
+
+
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
