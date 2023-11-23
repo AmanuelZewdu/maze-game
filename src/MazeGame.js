@@ -42,7 +42,6 @@ const MazeGame = () => {
       <header class="maze-game-header">
         <h1>Maze Game</h1>
         <p>Challenge your skills and guide the ball to the goal!</p>
-        <p>Hit the ball or the button to roll</p>
       </header>
       <div className="maze-game">
         {/* Maze board with numbered cells */}
@@ -70,6 +69,12 @@ const MazeGame = () => {
             Reset
           </button>
         </div>
+        {/* Success message (conditionally displayed) */}
+        {showSuccessMessage && (
+          <div className="success-message">
+            Congratulations! You reached the end!
+          </div>
+        )}
 
         {/* Fireworks animation (conditionally displayed) */}
         {showFireworks && (
@@ -101,13 +106,6 @@ const MazeGame = () => {
             <div class="firework"></div>
             <div class="firework"></div>
           </>
-        )}
-
-        {/* Success message (conditionally displayed) */}
-        {showSuccessMessage && (
-          <div className="success-message">
-            Congratulations! You reached the end!
-          </div>
         )}
       </div>
     </div>
