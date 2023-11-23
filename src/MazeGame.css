@@ -30,6 +30,7 @@
   margin: 8px;
   text-align:center;
   line-height: 100px;
+  font-size: 40px;
 
 }
 
@@ -46,7 +47,7 @@ top: 60%;
   height: 120px;
   background-color:green;
   color:white;
-  animation: pulse 1s ease-in-out infinite;
+  animation: scroll 1s linear infinite;
 }
 .maze-cell.special-cell {
   width: 120px;
@@ -249,3 +250,11 @@ top: 60%;
   }
 }
 
+@keyframes scroll {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
