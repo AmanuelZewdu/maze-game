@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./MazeGame.css";
 import useSound from "use-sound";
 import mouse from "./shared/mouse-click.mp3";
@@ -12,22 +12,26 @@ const MazeGame = () => {
   const [rollBallSound] = useSound(mouse);
   const [fireWorkSound] = useSound(fireworks);
   const [successSound] = useSound(success);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isAnimating, setIsAnimating] = useState(true);
 
   const handleRollBallClick = () => {
-    rollBallSound(); // Play roll ball sound
+    rollBallSound();
 
-    // Update ball position randomly between 1 and 2 steps
     const newBallPosition = Math.min(ballPosition + Math.random() * 2 + 1, 15);
 
     setBallPosition(Math.floor(newBallPosition));
     console.log("Ball Position", ballPosition);
 
-    // Check if ball reached cell 15
     if (newBallPosition === 15) {
       fireWorkSound(); // Play fireworks sound
       setShowFireworks(true); // Show fireworks animation
       setShowSuccessMessage(true); // Show success message
       successSound(); // Play success sound
+      setTimeout(() => {
+        setIsAnimating(false);
+        window.location.reload();
+      }, 5000);
     }
   };
 
@@ -37,6 +41,8 @@ const MazeGame = () => {
     setShowFireworks(false);
   };
 
+  useEffect(() => {}, []);
+
   return (
     <div className="maze-game">
       <header class="maze-game-header">
@@ -44,7 +50,6 @@ const MazeGame = () => {
         <p>Challenge your skills and guide the ball to the goal!</p>
       </header>
       <div className="maze-game">
-        {/* Maze board with numbered cells */}
         <div className="maze-board">
           {Array.from({ length: 15 }).map((_, index) => (
             <div
@@ -69,32 +74,40 @@ const MazeGame = () => {
             Reset
           </button>
         </div>
-        {/* Success message (conditionally displayed) */}
+
         {showSuccessMessage && (
           <div className="success-message">
             Congratulations! You reached the end!
           </div>
         )}
 
-        {/* Fireworks animation (conditionally displayed) */}
         {showFireworks && (
           <>
             <div className="fireworks-animation">
-              <div className="firework">
+              <div
+                className="firework"
+                style={{ display: isAnimating ? "block" : "none" }}
+              >
                 <div className="firework-particle"></div>
                 <div className="firework-particle"></div>
                 <div className="firework-particle"></div>
                 <div className="firework-particle"></div>
                 <div className="firework-particle"></div>
               </div>
-              <div className="firework">
+              <div
+                className="firework"
+                style={{ display: isAnimating ? "block" : "none" }}
+              >
                 <div className="firework-particle"></div>
                 <div className="firework-particle"></div>
                 <div className="firework-particle"></div>
                 <div className="firework-particle"></div>
                 <div className="firework-particle"></div>
               </div>
-              <div className="firework">
+              <div
+                className="firework"
+                style={{ display: isAnimating ? "block" : "none" }}
+              >
                 <div className="firework-particle"></div>
                 <div className="firework-particle"></div>
                 <div className="firework-particle"></div>
@@ -102,9 +115,9 @@ const MazeGame = () => {
                 <div className="firework-particle"></div>
               </div>
             </div>
+            {/* <div class="firework"></div>
             <div class="firework"></div>
-            <div class="firework"></div>
-            <div class="firework"></div>
+            <div class="firework"></div> */}
           </>
         )}
       </div>

@@ -1,5 +1,5 @@
 
-/* Overall game container */
+
 .maze-game {
   width: 1000px;
   margin: 0 auto;
@@ -7,7 +7,7 @@
  
 }
 
-/* Maze board */
+
 .maze-board {
   display: flex;
   flex-wrap: wrap;
@@ -20,19 +20,8 @@
  
 }
 
-/* Maze cells */
-.maze-cell {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin: 5px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-  margin: 8px;
-  text-align:center;
-  line-height: 100px;
-  font-size: 40px;
 
-}
+
 
 .buttons{
   position: absolute;
@@ -41,14 +30,65 @@ top: 60%;
   transform: translate(-50%, -50%);
   
 }
-/* Active maze cell (ball's current position) */
+
+
+.maze-cell {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 5px;
+  box-shadow: 0px 10px 15px rgba(245, 13, 13, 0.2);
+  margin: 8px;
+  text-align: center;
+  line-height: 100px;
+  font-size: 40px;
+}
+
 .maze-cell.active {
   width: 120px;
   height: 120px;
-  background-color:green;
-  color:white;
+  background-color: rgb(10, 3, 3);
+  color: rgb(165, 13, 13);
   animation: scroll 1s linear infinite;
+  position: relative;
+  text-align: center;
 }
+
+.maze-cell.active:before {
+  content: '';
+  position: absolute;
+  top: 75%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  background-color: rgb(156, 95, 15);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.maze-cell.active:after {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  z-index: 2;
+}
+
+
+.maze-cell.active:nth-child(n+2):before {
+  background-color: rgb(216, 226, 212);
+}
+
+.maze-cell.active:nth-child(3):after {
+  background-color: rgb(255, 140, 0);
+}
+
 .maze-cell.special-cell {
   width: 120px;
   height: 120px;
@@ -56,11 +96,9 @@ top: 60%;
   color:white;
 }
 
-.special-cell.active:not(#fff) {
-  background-color: #f00; /* Change color of 15th cell when ball reaches it */
-}
 
-/* Roll ball button */
+
+
 .roll-ball-button {
   margin-top: 20px;
   margin-right : 8px;
@@ -68,8 +106,8 @@ top: 60%;
   cursor: pointer;
   width: 100px;
   height: 100px;
-  background-color: #f00;
-  color: #fff;
+  background-color: rgb(223, 25, 25);
+  color: #220303;
   font-size: 18px;
   background-position: center;
   background-repeat: no-repeat;
@@ -78,11 +116,9 @@ top: 60%;
   top: 60%;
   left: 40%;
   border-radius: 50%;
-  border: none;
-  color: #fff;
-  cursor: pointer;
   animation: pulse 1s ease-in-out infinite;
 }
+
 
 @keyframes pulse {
   0% {
@@ -97,8 +133,6 @@ top: 60%;
 }
 
 
-
-/* Success message */
 .success-message {
  
   text-align: center;
@@ -132,103 +166,63 @@ top: 60%;
   line-height: 1.5;
 }
 
-
-
 .fireworks-animation {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fireworks 2s ease-in-out forwards;
-  
-}
-
-@keyframes fireworks {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  z-index: 11;
 }
 
 .firework {
   position: relative;
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   background-color: #f00;
   border-radius: 50%;
-  animation: burst 1s ease-in-out forwards;
+  animation: firework-glow 0.5s ease-in-out infinite;
 }
 
-@keyframes burst {
-  from {
-    transform: scale(0);
+@keyframes firework-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5);
   }
   50% {
-    transform: scale(2);
+    box-shadow: 0 0 10px 10px rgba(255, 187, 0, 0.8);
   }
-  to {
-    transform: scale(0);
-    opacity: 0;
+  100% {
+    box-shadow: 0 0 0 0 rgba(31, 158, 31, 0);
   }
 }
 
 .firework-particle {
   position: absolute;
-  width: 3px;
-  height: 3px;
-  background-color: #00f;
+  width: 50%;
+  height: 50px;
+  background-color: rgb(255, 174, 0);
   border-radius: 50%;
-  animation: sparkle 1s linear infinite;
+  animation: firework-movement 2s ease-in-out infinite;
 }
 
-@keyframes sparkle {
+@keyframes firework-movement {
   0% {
-    transform: translateX(-5px) translateY(-5px) rotate(0deg);
-  }
-  25% {
-    transform: translateX(5px) translateY(5px) rotate(45deg);
+    transform: translate(random(-50, 50) + 150%, 0); 
   }
   50% {
-    transform: translateX(10px) translateY(10px) rotate(90deg);
-  }
-  75% {
-    transform: translateX(5px) translateY(5px) rotate(135deg);
+    transform: translate(0, random(-50, 50) + 150%); 
   }
   100% {
-    transform: translateX(-5px) translateY(-5px) rotate(180deg);
+    transform: translate(-50%, 0);
   }
 }
 
-/* Style the feedback container */
-.feedback-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200px;
-  height: 200px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  text-align: center;
-  line-height: 200px;
-  display: none;
-  z-index: 2;
-}
 
-
-
-/* Style the fireworks animation */
-.fireworks-animation {
-  font-size: 48px;
-}
 
 
 
